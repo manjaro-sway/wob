@@ -21,6 +21,7 @@ jobs:
         run: |
           pacman -Syyu --noconfirm
           sudo chown -R builder .
+          sudo -u builder gpg --recv-key F4B432D5D67990E3
       -
         id: pkgbuild
         run: |
