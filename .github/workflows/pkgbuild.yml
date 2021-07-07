@@ -67,11 +67,10 @@ jobs:
           shell: /bin/sh
           install: |
             if [ -n "${{ env.ADDITIONAL_GPG }}" ]; then
-              for key in "${{ env.ADDITIONAL_GPG }}"; do
-                sudo -u builder gpg --keyserver keyserver.ubuntu.com --recv-key $key
+              for key in "${{ env.ADDITIONAL_GPG }} ${{ secrets.GPG_KEYID }}"; do
+                sudo -u builder gpg --keyserver keys.openpgp.org --recv-key $key
               done
             fi
-            pacman-key --keyserver keyserver.ubuntu.com --recv-keys ${{ secrets.GPG_KEYID }}
             sed -i '/^\[core\]/i \[manjaro-sway\]\nSigLevel = Optional TrustAll\nServer = https://packages.manjaro-sway.download/$arch\n' /etc/pacman.conf
             pacman-mirrors --geoip
             pacman -Syy
