@@ -1,37 +1,35 @@
 # Maintainer: Martin Franc <me@martinfranc.eu>
 
 pkgname=wob
-pkgver=0.11
-pkgrel=1
+pkgver=0.20
+pkgrel=2
 pkgdesc='A lightweight overlay volume/backlight/progress/anything bar for Wayland'
 arch=('i686' 'x86_64' 'aarch64')
 url='https://github.com/francma/wob'
 license=('ISC')
 depends=('wayland')
 makedepends=('meson' 'wayland-protocols' 'scdoc')
+_commit='002b84b4ce654b0e38e8d1b2512b779345896e42'
 source=(
-	"${pkgname}-${pkgver}.tar.gz::https://github.com/francma/wob/releases/download/${pkgver}/wob-${pkgver}.tar.gz"
-	"${pkgname}-${pkgver}.tar.gz.sig::https://github.com/francma/wob/releases/download/${pkgver}/wob-${pkgver}.tar.gz.sig"
+	"${pkgname}-${_commit}.zip::${url}/archive/${_commit}.zip"
 )
-validpgpkeys=('5C6DA024DDE27178073EA103F4B432D5D67990E3')
 sha512sums=(
-	'71237095bea0e8ecb8030f13a440bae351e97e19092fc832ac77b87947a826ec103b597e0d7900670dc4407deb35bc318f7092ff8bcfa7b7ca2b03c113a6cde8'
-	'SKIP'
+	'314e696cf9886fb447504503cc42a258e71624ccb9a8fe3a4261efaecb50571583e648bea56aad4a9ca46cde56a698144187937123a268cb1c93086639c08025'
 )
 
 prepare() {
-	cd "${pkgname}-${pkgver}"
+	cd "${pkgname}-${_commit}"
 }
 
 build() {
 	mkdir -p build
-	arch-meson build "${pkgname}-${pkgver}" -D b_ndebug=true
+	arch-meson build "${pkgname}-${_commit}" -D b_ndebug=true
 	ninja -C build
 }
 
 package() {
 	DESTDIR="${pkgdir}" ninja -C build install
-	install -Dm644 "${pkgname}-${pkgver}/LICENSE" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+	install -Dm644 "${pkgname}-${_commit}/LICENSE" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 }
 
 check() {
