@@ -1,15 +1,15 @@
 # Maintainer: Martin Franc <me@martinfranc.eu>
 
 pkgname=wob
-pkgver=0.21
-pkgrel=2
+pkgver=0.22
+pkgrel=3
 pkgdesc='A lightweight overlay volume/backlight/progress/anything bar for Wayland'
 arch=('i686' 'x86_64' 'aarch64')
 url='https://github.com/boredland/wob'
 license=('ISC')
 depends=('wayland')
 makedepends=('meson' 'wayland-protocols' 'scdoc')
-_commit='562a5414af6a14c2249bf53a1ed336b586ae712c'
+_commit='710ac17184c7ba6c36638bf41da9df9a62be554d'
 source=(
 	"${pkgname}-${_commit}.zip::${url}/archive/${_commit}.zip"
 )
