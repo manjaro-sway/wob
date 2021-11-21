@@ -4,3 +4,5 @@
 !PKGBUILD
 !wob.service
 !wob.socket
+!.github
+!.github/*
