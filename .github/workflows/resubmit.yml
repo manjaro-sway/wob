@@ -34,4 +34,4 @@ jobs:
           token: ${{ secrets.DISPATCH }}
           repository: manjaro-sway/packages
           event-type: package_update
-          client-payload: '{ "repository": "${{ github.repository }}", "version": "${{ steps.version.outputs.versions }}" }'
+          client-payload: '{ "repository": "${{ github.repository }}", "version": "${{ steps.versions.outputs.versions }}" }'
