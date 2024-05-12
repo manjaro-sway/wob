@@ -6,7 +6,7 @@ on:
     - cron:  '*/30 * * * *'
 
 concurrency:
-  group: rebase
+  group: ${{ github.workflow }}
   cancel-in-progress: true
 
 jobs:
